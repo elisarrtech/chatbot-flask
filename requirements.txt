@@ -2,3 +2,5 @@ gunicorn==20.1.0
 Flask==2.3.2
 gspread==5.11.2
 oauth2client==4.1.3
+# Actualiza requirements.txt para evitar warnings
+echo "setuptools<81.0.0" >> requirements.txt
