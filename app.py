@@ -32,7 +32,9 @@ def chatbot():
         
         try:
             # Validación básica de campos
-            required_fields = ['nombre', 'email', 'mensaje']
+           required_fields = ['nombre', 'email', 'mensaje', 'edad', 'escolaridad', 
+                  'colonia', 'distanciaKelloggs', 'experienciaLaboral', 
+                  'mayorExperiencia']
             if not all(field in data for field in required_fields):
                 return "Faltan campos requeridos", 400
                 
