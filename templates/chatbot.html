@@ -1,15 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chatbot</title>
+    <title>Formulario de Postulación</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <form method="POST" action="/">
-        <input type="text" name="nombre" placeholder="Nombre" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <textarea name="mensaje" placeholder="Mensaje" required></textarea><br>
-        <button type="submit">Enviar</button>
+        <!-- Campos originales -->
+        <div class="form-group">
+            <label for="nombre">Nombre completo*</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mensaje">Mensaje*</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+        </div>
+
+        <!-- Nuevos campos -->
+        <div class="form-group">
+            <label for="edad">Edad*</label>
+            <input type="number" id="edad" name="edad" min="18" max="70" required>
+        </div>
+
+        <div class="form-group">
+            <label for="escolaridad">Escolaridad*</label>
+            <select id="escolaridad" name="escolaridad" required>
+                <option value="">Seleccione...</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Preparatoria">Preparatoria/Bachillerato</option>
+                <option value="Técnico">Carrera Técnica</option>
+                <option value="Licenciatura">Licenciatura</option>
+                <option value="Posgrado">Posgrado</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="colonia">Colonia donde resides*</label>
+            <input type="text" id="colonia" name="colonia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="distanciaKelloggs">Distancia a planta Kellogg's (km)*</label>
+            <input type="number" id="distanciaKelloggs" name="distanciaKelloggs" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="experienciaLaboral">¿Tienes experiencia laboral?*</label>
+            <select id="experienciaLaboral" name="experienciaLaboral" required>
+                <option value="">Seleccione...</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ultimoTrabajo">Último trabajo (opcional)</label>
+            <input type="text" id="ultimoTrabajo" name="ultimoTrabajo">
+        </div>
+
+        <div class="form-group">
+            <label for="ultimoSueldo">Último sueldo mensual (opcional)</label>
+            <input type="number" id="ultimoSueldo" name="ultimoSueldo" min="0" step="100">
+        </div>
+
+        <div class="form-group">
+            <label for="mayorExperiencia">Describe tu mayor experiencia laboral*</label>
+            <textarea id="mayorExperiencia" name="mayorExperiencia" required></textarea>
+        </div>
+
+        <button type="submit">Enviar postulación</button>
+        <p>* Campos obligatorios</p>
     </form>
 </body>
 </html>
