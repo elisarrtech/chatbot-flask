@@ -1,2 +1,0 @@
-pip install flask gspread oauth2client
-pip freeze > requirements.txt
