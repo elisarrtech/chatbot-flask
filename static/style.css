@@ -1,115 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-}
-
-/* Botón flotante (burbuja) */
-.chat-toggle {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background-color: #2e7d32;
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 28px;
-  text-align: center;
-  line-height: 60px;
-  cursor: pointer;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background 0.3s ease;
-}
-
-.chat-toggle:hover {
-  background-color: #1b5e20;
-}
-
-/* Contenedor flotante del chat */
-#chat-container {
-  position: fixed;
-  bottom: 100px;
-  right: 24px;
-  width: 360px;
-  max-height: 520px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 999;
-}
-
-/* Cabecera del chat */
-.chat-header {
-  background-color: #2e7d32;
-  color: white;
-  padding: 14px 20px;
-  font-weight: 500;
-}
-
-/* Área de mensajes */
-.chat-log {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
-  background-color: #f9f9f9;
-}
-
-/* Mensajes */
-.chat-message {
-  margin-bottom: 12px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 14px;
-  max-width: 85%;
-}
-
-.user-message {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-  margin-left: auto;
-}
-
-.bot-message {
-  background-color: #eeeeee;
   color: #333;
-  margin-right: auto;
 }
 
-/* Entrada de texto */
-.chat-input-container {
-  display: flex;
-  padding: 12px;
-  background-color: #f4f6f5;
-  border-top: 1px solid #ddd;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 15px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  outline: none;
-}
-
-.chat-submit {
-  background-color: #2e7d32;
-  color: white;
-  border: none;
-  margin-left: 8px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.chat-submit:hover {
-  background-color: #1b5e20;
-}
+.container {
+  max-width: 480px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 2
