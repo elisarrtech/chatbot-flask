@@ -52,3 +52,15 @@ def chatbot():
 
 if __name__ == '__main__':
     app.run(debug=os.getenv('ENVIRONMENT') != 'PRODUCTION')
+
+client = gspread.authorize(creds)
+
+# Verificación adicional (agrega esto después de autorizar)
+try:
+    test_sheet = client.open_by_key(HOJA_ID)
+    print("✅ Conexión con Google Sheets exitosa!")
+except Exception as e:
+    print(f"❌ Error de conexión: {str(e)}")
+    raise  # Detiene la aplicación si no puede conectarse
+
+sheet = test_sheet.sheet1
