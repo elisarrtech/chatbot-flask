@@ -31,27 +31,28 @@ def chatbot():
         data = request.form.to_dict()
         
         try:
-            # Validación básica de campos
-           required_fields = ['nombre', 'email', 'mensaje', 'edad', 'escolaridad', 
-                  'colonia', 'distanciaKelloggs', 'experienciaLaboral', 
-                  'mayorExperiencia']
+            # Validación de campos (ATENCIÓN A LA INDENTACIÓN)
+            required_fields = ['nombre', 'email', 'mensaje', 'edad', 'escolaridad',
+                             'colonia', 'distanciaKelloggs', 'experienciaLaboral',
+                             'mayorExperiencia']
+            
             if not all(field in data for field in required_fields):
                 return "Faltan campos requeridos", 400
                 
-            # Guarda en Google Sheets con manejo de errores
-          sheet.append_row([
-    data['nombre'],
-    data['email'],
-    data['mensaje'],
-    data['edad'],
-    data['escolaridad'],
-    data['colonia'],
-    data['distanciaKelloggs'],
-    data['experienciaLaboral'],
-    data.get('ultimoTrabajo', ''),  # Usamos get() para campos opcionales
-    data.get('ultimoSueldo', ''),
-    data['mayorExperiencia']
-])
+            # Guarda en Google Sheets
+            sheet.append_row([
+                data['nombre'],
+                data['email'],
+                data['mensaje'],
+                data['edad'],
+                data['escolaridad'],
+                data['colonia'],
+                data['distanciaKelloggs'],
+                data['experienciaLaboral'],
+                data.get('ultimoTrabajo', ''),
+                data.get('ultimoSueldo', ''),
+                data['mayorExperiencia']
+            ])
             return render_template('gracias.html', data=data)
             
         except Exception as e:
