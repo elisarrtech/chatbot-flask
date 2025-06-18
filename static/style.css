@@ -1,4 +1,4 @@
-/* Importa la fuente Roboto desde Google Fonts */
+/* Fuente Roboto */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 body {
@@ -9,37 +9,34 @@ body {
   color: #333;
 }
 
-.container {
-  max-width: 500px;
-  margin: 50px auto;
-  background-color: #ffffff;
+/* Contenedor del formulario */
+form {
+  max-width: 600px;
+  margin: 40px auto;
   padding: 40px;
+  background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   border-left: 5px solid #28a745;
 }
 
-h1, h2 {
-  text-align: center;
-  color: #28a745;
-  margin-bottom: 30px;
-  font-weight: 700;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+/* Etiquetas y entradas */
+.form-group {
+  margin-bottom: 20px;
 }
 
 label {
+  display: block;
   margin-bottom: 6px;
   font-weight: 500;
   color: #495057;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
+  width: 100%;
   padding: 12px 14px;
-  margin-bottom: 20px;
   border: 1px solid #ced4da;
   border-radius: 8px;
   font-size: 16px;
@@ -47,12 +44,15 @@ input, select, textarea {
   transition: all 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
   outline: none;
 }
 
+/* Botón de enviar */
 button[type="submit"] {
   background-color: #28a745;
   color: white;
@@ -62,6 +62,7 @@ button[type="submit"] {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  width: 100%;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -70,16 +71,101 @@ button[type="submit"]:hover {
   transform: translateY(-2px);
 }
 
-small {
-  font-size: 13px;
+p {
+  font-size: 14px;
   color: #6c757d;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  text-align: center;
 }
 
+/* Chat flotante */
+.chat-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #28a745;
+  color: white;
+  font-size: 24px;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+#chat-container {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 320px;
+  height: 450px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.chat-log {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #333;
+}
+
+.chat-input-container {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.chat-submit {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-submit:hover {
+  background-color: #218838;
+}
+
+/* Responsivo */
 @media (max-width: 600px) {
-  .container {
+  form {
     margin: 20px;
-    padding: 25px;
+    padding: 20px;
+  }
+
+  #chat-container {
+    width: 90%;
+    right: 5%;
   }
 }
