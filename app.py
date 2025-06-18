@@ -6,40 +6,41 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 
-# Configuración segura para Google Sheets
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
-# Modo desarrollo vs producción
 if os.getenv('ENVIRONMENT') == 'PRODUCTION':
-    # Para Render (usando variable de entorno)
     creds_json = os.getenv('GOOGLE_CREDS_JSON')
     creds_dict = json.loads(creds_json)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 else:
-    # Para desarrollo local
     creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
 
 client = gspread.authorize(creds)
 
-# Usa ID de hoja en lugar del nombre (más seguro)
-HOJA_ID = "1Sojtik9qh_nmK5EXjgnAGKDcSCbU_OCoc5y09DB5fvc"  # Reemplaza con el ID de tu hoja
-sheet = client.open_by_key(HOJA_ID).sheet1
+HOJA_ID = "1Sojtik9qh_nmK5EXjgnAGKDcSCbU_OCoc5y09DB5fvc"
+
+try:
+    test_sheet = client.open_by_key(HOJA_ID)
+    print("✅ Conexión con Google Sheets exitosa!")
+except Exception as e:
+    print(f"❌ Error de conexión: {str(e)}")
+    raise
+
+sheet = test_sheet.sheet1
 
 @app.route('/', methods=['GET', 'POST'])
 def chatbot():
     if request.method == 'POST':
         data = request.form.to_dict()
-        
+
         try:
-            # Validación de campos (ATENCIÓN A LA INDENTACIÓN)
             required_fields = ['nombre', 'email', 'mensaje', 'edad', 'escolaridad',
-                             'colonia', 'distanciaKelloggs', 'experienciaLaboral',
-                             'mayorExperiencia']
-            
+                               'colonia', 'distanciaKelloggs', 'experienciaLaboral',
+                               'mayorExperiencia']
+
             if not all(field in data for field in required_fields):
                 return "Faltan campos requeridos", 400
-                
-            # Guarda en Google Sheets
+
             sheet.append_row([
                 data['nombre'],
                 data['email'],
@@ -54,24 +55,20 @@ def chatbot():
                 data['mayorExperiencia']
             ])
             return render_template('gracias.html', data=data)
-            
+
         except Exception as e:
             app.logger.error(f"Error al guardar en Sheets: {str(e)}")
             return "Ocurrió un error al procesar tu mensaje", 500
-    
+
     return render_template('chatbot.html')
 
+
+@app.route('/get', methods=['POST'])
+def get_bot_response():
+    user_msg = request.json.get('msg')
+    respuesta = "Gracias por tu mensaje: " + user_msg  # Aquí pon tu lógica real
+    return {"response": respuesta}
+
+
 if __name__ == '__main__':
-    app.run(debug=os.getenv('ENVIRONMENT') != 'PRODUCTION')
-
-client = gspread.authorize(creds)
-
-# Verificación adicional (agrega esto después de autorizar)
-try:
-    test_sheet = client.open_by_key(HOJA_ID)
-    print("✅ Conexión con Google Sheets exitosa!")
-except Exception as e:
-    print(f"❌ Error de conexión: {str(e)}")
-    raise  # Detiene la aplicación si no puede conectarse
-
-sheet = test_sheet.sheet1
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=os.getenv('ENVIRONMENT') != 'PRODUCTION')
